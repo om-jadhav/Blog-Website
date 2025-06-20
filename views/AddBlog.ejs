@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Add New Blog</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+
+        .form-floating > .form-control:focus ~ label {
+            opacity: 1;
+            transform: scale(0.85) translateY(-1.5rem) translateX(0.15rem);
+        }
+
+        .upload-label {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="container mt-5">
+        <div class="card p-4 mx-auto" style="max-width: 700px;">
+            <h3 class="mb-4 text-center">Add New Blog</h3>
+
+            <form action="/blog" method="post" enctype="multipart/form-data">
+                <!-- Cover Image -->
+                <div class="mb-4">
+                    <label for="coverImage" class="upload-label">Cover Image</label>
+                    <input type="file" class="form-control" id="coverImage" name="coverImage" required>
+                </div>
+
+                <!-- Blog Title -->
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Blog Title" required>
+                    <label for="title">Title</label>
+                </div>
+
+                <!-- Blog Body -->
+                <div class="mb-4">
+                    <label for="body" class="form-label">Body</label>
+                    <textarea class="form-control" name="body" id="body" rows="8" placeholder="Write your blog here..." required></textarea>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary w-100" type="submit">Publish Blog</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('./partials/scripts.ejs') %>
+</body>
+
+</html>
