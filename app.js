@@ -12,11 +12,24 @@ const blogRoute = require('./routes/blog');
 const { checkForAuthenticationCookie } = require("./middlewares/authentication");
 
 const app = express();
+// const PORT = process.env.PORT || 7000;
+
+// mongoose
+//     .connect(process.env.MONGO_URL)
+//     .then( e=> console.log('MongoDB connected'));
 const PORT = process.env.PORT || 7000;
 
-mongoose
-    .connect(process.env.MONGO_URL)
-    .then( e=> console.log('MongoDB connected'));
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error(err));
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 
 app.set("view engine", "ejs")
 app.set("views", path.resolve("./views"));
